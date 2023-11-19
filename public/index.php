@@ -7,4 +7,5 @@ use Framework\Request;
 
 $app = App::make(Request::capture());
 
-$app->run();
+echo $app->run()
+    ->send();

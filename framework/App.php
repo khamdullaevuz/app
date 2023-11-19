@@ -12,7 +12,7 @@ class App
         return $app;
     }
 
-    public function run(): void
+    public function run(): Response
     {
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
@@ -23,16 +23,14 @@ class App
         $controller = ucwords($controller);
         $controller = "controllers\\{$controller}Controller";
         if(!class_exists($controller)) {
-            echo (new Response('Page not found'))->send();
-            return;
+            return (new Response('Page not found'));
         }
         $action = empty($path_parts[2]) ? 'index' : $path_parts[2];
         $action = "action" . ucwords($action);
         if(!method_exists($controller, $action)) {
-            echo (new Response('Page not found'))->send();
-            return;
+            return (new Response('Page not found'));
         }
 
-        echo (new $controller())->$action($body)->send();
+        return (new $controller())->$action($body);
     }
 }

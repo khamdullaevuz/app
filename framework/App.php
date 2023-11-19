@@ -12,7 +12,7 @@ class App
         return $app;
     }
 
-    public function run(): Response
+    public function handle(): Response
     {
         $path = $this->request->getPath();
         $method = $this->request->getMethod();

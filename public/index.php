@@ -5,7 +5,6 @@ require __DIR__ . '/../loader.php';
 use Framework\App;
 use Framework\Request;
 
-$app = App::make(Request::capture());
-
-echo $app->run()
+echo App::make(Request::capture())
+    ->handle()
     ->send();

@@ -13,6 +13,6 @@ class Response
 
     public function send(): string
     {
-        return is_array($this->body) ? implode('', $this->body) : $this->body;
+        return is_array($this->body) ? implode(' ', $this->body) : $this->body;
     }
 }
